@@ -10,9 +10,8 @@ module Rails
         end
 
         ::Rack::WebProfiler.unregister_collector [
-          # ::Rack::WebProfiler::Collector::ExceptionCollector,
-          # ::Rack::WebProfiler::Collector::RackCollector,
-          ::Rack::WebProfiler::Collector::RequestCollector,
+          ::Rack::WebProfiler::Collectors::RackCollector,
+          ::Rack::WebProfiler::Collectors::RequestCollector,
         ]
 
         ::Rack::WebProfiler.register_collector [
