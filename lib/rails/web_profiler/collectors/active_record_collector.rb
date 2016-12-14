@@ -52,6 +52,7 @@ __END__
   <div class="block">
     <h3>SQL Queries</h3>
 
+    <% unless data(:events).empty? %>
     <table>
       <thead>
         <tr>
@@ -68,6 +69,9 @@ __END__
           </td>
           <td>
             <%=highlight language: :sql, code: e.payload[:sql] %>
+          <% if e.payload[:binds].length > 0 %>
+            <strong>params: </strong> <code>[<%=h e.payload[:binds].map { |b| "[\"#{b.name}\", #{b.value_for_database.inspect}]" }.join(", ") %>]</code>
+          <% end %>
           </td>
           <td>
             <%=h e.duration.round(2) %> ms
@@ -76,5 +80,8 @@ __END__
       <% end %>
       </tbody>
     </table>
+    <% else %>
+    <p><span class="text__no-value">No queries executed.</span></p>
+    <% end %>
   </div>
 <% end %>

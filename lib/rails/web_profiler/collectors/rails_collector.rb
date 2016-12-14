@@ -10,6 +10,8 @@ module Rails
     position   1
 
     collect do |request, _response|
+      store :rack_version, ::Rack.release
+
       store :rails_version, Rails.version
       store :rails_env,     Rails.env
       store :rails_doc_url, "http://api.rubyonrails.org/v#{Rails.version}/"
@@ -54,6 +56,19 @@ __END__
         <tr>
           <th>Documentation</th>
           <td><a href="<%=h data(:rails_doc_url) %>"><%=h data(:rails_doc_url) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <h3>Rack informations</h3>
+
+    <table>
+      <tbody>
+        <tr>
+          <th>Version</th>
+          <td><%=h data(:rack_version) %></td>
         </tr>
       </tbody>
     </table>

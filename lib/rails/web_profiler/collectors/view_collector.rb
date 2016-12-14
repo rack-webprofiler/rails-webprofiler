@@ -31,34 +31,38 @@ __END__
 
 <% panel_content do %>
   <div class="block">
-  <h3>Views</h3>
+    <h3>Views</h3>
 
-  <table>
-    <thead>
-      <tr>
-        <th width="140">#</th>
-        <th>View</th>
-        <th width="50">Time</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% data(:events).each do |e| %>
-      <tr<% if e.duration > 500 %> class="warning"<% end %>>
-        <td class="code">
-          <%=h e.transaction_id %>
-        </td>
-        <td>
-          <code><%=h e.payload[:identifier].sub!(data(:root_path), '') %></code>
-        <% unless e.payload[:layout].nil? %>
-          within <code><%=h e.payload[:layout] %></code>
-        <% end %>
-        </td>
-        <td>
-          <%=h e.duration.round(2) %> ms
-        </td>
-      </tr>
+    <% unless data(:events).empty? %>
+    <table>
+      <thead>
+        <tr>
+          <th width="140">#</th>
+          <th>View</th>
+          <th width="50">Time</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% data(:events).each do |e| %>
+        <tr<% if e.duration > 500 %> class="warning"<% end %>>
+          <td class="code">
+            <%=h e.transaction_id %>
+          </td>
+          <td>
+            <code><%=h e.payload[:identifier].sub!(data(:root_path), '') %></code>
+          <% unless e.payload[:layout].nil? %>
+            within <code><%=h e.payload[:layout] %></code>
+          <% end %>
+          </td>
+          <td>
+            <%=h e.duration.round(2) %> ms
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% else %>
+    <p><span class="text__no-value">No views loaded.</span></p>
     <% end %>
-    </tbody>
-  </table>
   </div>
 <% end %>
