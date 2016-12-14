@@ -8,6 +8,8 @@ install:
 
 script:
   - time bundle exec rake spec
+  - bundle exec bundle-audit update
+  - bundle exec bundle-audit check
 
 deploy:
   provider: rubygems
