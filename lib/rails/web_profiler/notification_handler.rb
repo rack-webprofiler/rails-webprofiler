@@ -13,6 +13,8 @@ class Rails::WebProfiler::NotificationHandler
       select do |e|
         if event_name.is_a?(Array)
           event_name.include?(e.name)
+        elsif event_name.is_a?(Regexp)
+          event_name.scan(event_name).length > 0
         else
           e.name === event_name
         end
