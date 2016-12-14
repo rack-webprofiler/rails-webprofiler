@@ -4,8 +4,9 @@ module Rails
 
     icon nil
 
-    collector_name "rails_view"
-    position       9
+    identifier "rails.view"
+    label      "View"
+    position   9
 
     collect do |_request, _response|
       data = ::Rack::WebProfiler.data("rails.events")

@@ -5,8 +5,9 @@ module Rails
 
     icon nil
 
-    collector_name "rails"
-    position       1
+    identifier "rails.rails"
+    label      "Rails"
+    position   1
 
     collect do |request, _response|
       store :rails_version, Rails.version
