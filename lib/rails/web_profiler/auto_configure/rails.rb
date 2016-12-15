@@ -15,10 +15,10 @@ module Rails
         ]
 
         ::Rack::WebProfiler.register_collector [
+          Rails::WebProfiler::Collectors::ActionViewCollector,
           Rails::WebProfiler::Collectors::ActiveRecordCollector,
           Rails::WebProfiler::Collectors::RailsCollector,
           Rails::WebProfiler::Collectors::RequestCollector,
-          Rails::WebProfiler::Collectors::ViewCollector,
         ]
 
 

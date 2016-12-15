@@ -6,10 +6,10 @@ class Rails::WebProfiler
   autoload :NotificationHandler, "rails/web_profiler/notification_handler"
 
   module Collectors
+    autoload :ActionViewCollector, "rails/web_profiler/collectors/action_view_collector"
     autoload :ActiveRecordCollector, "rails/web_profiler/collectors/active_record_collector"
     autoload :RailsCollector, "rails/web_profiler/collectors/rails_collector"
     autoload :RequestCollector, "rails/web_profiler/collectors/request_collector"
-    autoload :ViewCollector, "rails/web_profiler/collectors/view_collector"
   end
 
   module AutoConfigure
