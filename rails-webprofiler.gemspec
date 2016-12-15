@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Nicolas Brousse"]
   spec.email         = ["pro@nicolas-brousse.fr"]
 
-  spec.summary       = %q{summary}
-  spec.description   = %q{description}
+  spec.summary       = %q{A web profiler for Rails applications.}
+  spec.description   = %q{A web profiler for Rails applications.}
   spec.homepage      = "http://github.com/rack-webprofiler/rails-webprofiler"
   spec.license       = "MIT"
 

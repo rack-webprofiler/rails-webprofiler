@@ -1,28 +1,23 @@
-# Rails::WebProfiler
+# Rails WebProfiler
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rails/webprofiler`. To experiment with that code, run `bin/console` for an interactive prompt.
+A web profiler for Rails applications based on
+[`rack-webprofiler`](https://github.com/rack-webprofiler/rails-webprofiler/).
 
-TODO: Delete this and the text above, and describe your gem
+[![Version         ](http://img.shields.io/gem/v/rails-webprofiler.svg)                               ](https://rubygems.org/gems/rails-webprofiler)
+[![Travis CI       ](http://img.shields.io/travis/rack-webprofiler/rails-webprofiler/master.svg)           ](https://travis-ci.org/rack-webprofiler/rails-webprofiler)
+[![Gitter         ](https://img.shields.io/gitter/room/rack-webprofiler/rails-webprofiler.svg)       ](https://gitter.im/rack-webprofiler/rails-webprofiler)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rails-webprofiler'
+gem "rails-webprofiler"
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rails-webprofiler
 
 ## Usage
 
-TODO: Write usage instructions here
+Simply add the gem to your Gemfile.
 
 ## Development
 
