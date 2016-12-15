@@ -11,10 +11,6 @@ class Rails::WebProfiler
     autoload :RailsCollector, "rails/web_profiler/collectors/rails_collector"
     autoload :RequestCollector, "rails/web_profiler/collectors/request_collector"
   end
-
-  module AutoConfigure
-    autoload :Rails, "rails/web_profiler/auto_configure/rails"
-  end
 end
 
-require "rails/web_profiler/auto_configure/rails" if defined? Rails
+require "rails/web_profiler/railtie" if defined? Rails
