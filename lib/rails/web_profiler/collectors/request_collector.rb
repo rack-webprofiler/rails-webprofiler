@@ -30,7 +30,8 @@ ICON
       store :response_headers, response.headers
       store :response_raw,     response.raw
 
-      store :route_name, route.nil? ? nil : route.name
+      store :route_name,      route.nil? ? nil : route.name
+      store :path_parameters, request.env["action_dispatch.request.path_parameters"]
 
       if response.successful?
         status :success
@@ -81,6 +82,10 @@ __END__
         <dd><%=h data(:request_method) %> <%=h data(:request_fullpath) %></dd>
         <dt>Route</dt>
         <dd><%=h data(:route_name) %></dd>
+        <% if !data(:path_parameters)[:controller].nil? && !data(:path_parameters)[:action].nil? %>
+        <dt>Action</dt>
+        <dd><%=h "#{data(:path_parameters)[:controller]}##{data(:path_parameters)[:action]}" %></dd>
+      <% end %>
       </dl>
     </div>
   </div>

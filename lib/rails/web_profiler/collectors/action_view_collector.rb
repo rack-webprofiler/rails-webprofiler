@@ -16,8 +16,11 @@ ICON
       events = []
       events = data.by_event_names(%w(render_template.action_view render_partial.action_view)) unless data.nil?
 
-      store :root_path, Rails.root.to_s
-      store :events,    events
+      total_duration = events.inject(0) { |sum, e| sum + e.duration }
+
+      store :root_path,      Rails.root.to_s
+      store :events,         events
+      store :total_duration, total_duration
     end
 
     template __FILE__, type: :DATA
@@ -28,7 +31,18 @@ end
 
 __END__
 <% tab_content do %>
-  <%=h data(:events).length %>
+  <%=h data(:total_duration).round(2) %> ms
+
+  <div class="details">
+    <div class="wrapper">
+      <dl>
+        <dt>Time</dt>
+        <dd><%=h data(:total_duration).round(2) %> ms</dd>
+        <dt>Views</dt>
+        <dd><%=h data(:events).length %></dd>
+      </dl>
+    </div>
+  </div>
 <% end %>
 
 <% panel_content do %>
