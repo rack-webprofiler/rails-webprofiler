@@ -31,6 +31,7 @@ end
 __END__
 <% tab_content do %>
   <%=h data(:events).length %>
+
   <div class="details">
     <div class="wrapper">
       <dl>

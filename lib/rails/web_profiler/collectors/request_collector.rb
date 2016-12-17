@@ -12,7 +12,7 @@ ICON
     position   2
 
     collect do |request, response|
-      route, _matches, request_params = find_route(request)
+      route, _matches, _request_params = find_route(request)
 
       store :request_headers,   request.http_headers
       store :request_fullpath,  request.fullpath
@@ -25,7 +25,6 @@ ICON
       store :request_body,      request.body_string
       store :request_mediatype, request.media_type
       store :request_raw,       request.raw
-      store :request_params,    request_params || {}
 
       store :response_status,  response.status
       store :response_headers, response.headers
