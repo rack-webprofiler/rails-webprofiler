@@ -20,7 +20,6 @@ class Rails::WebProfiler::NotificationHandler
         end
       end
     end
-
     alias by_event_names by_event_name
   end
 end

@@ -1,5 +1,3 @@
-require "rails"
-
 module Rails
   # WebProfiler::Railtie
   class WebProfiler::Railtie < ::Rails::Railtie # :nodoc:
