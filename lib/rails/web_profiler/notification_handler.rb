@@ -1,5 +1,7 @@
 class Rails::WebProfiler::NotificationHandler
   def call(*args)
+    return unless args.length == 5
+
     event = ActiveSupport::Notifications::Event.new(*args)
 
     events = ::Rack::WebProfiler.data("rails.events")
