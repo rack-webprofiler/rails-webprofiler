@@ -1,6 +1,6 @@
 # Rails WebProfiler
 
-A web profiler for Rails applications based on
+A web profiler for Rails +4.2 applications based on
 [`rack-webprofiler`](https://github.com/rack-webprofiler/rack-webprofiler/).
 
 [![Version         ](http://img.shields.io/gem/v/rails-webprofiler.svg)                               ](https://rubygems.org/gems/rails-webprofiler)

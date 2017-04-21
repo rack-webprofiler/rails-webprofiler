@@ -1,4 +1,6 @@
 require "rack/webprofiler"
+require "rails/version"
+require "rails/railtie"
 
 module Rails
   class WebProfiler
@@ -14,4 +16,6 @@ module Rails
   end
 end
 
-require "rails/web_profiler/railtie" if defined? Rails
+if defined?(::Rails) && ::Rails.version >= "4.2.0"
+  require "rails/web_profiler/railtie"
+end
