@@ -1,18 +1,15 @@
 module Rails
-  # WebProfiler::Railtie
-  class WebProfiler::Railtie < ::Rails::Railtie # :nodoc:
-    initializer "rails-webprofiler.configure_rails_initialization" do |app|
-      app.middleware.use ::Rack::WebProfiler do |c|
-        c.tmp_dir = ::File.expand_path(::File.join(Rails.root, "tmp"), __FILE__)
-      end
+  class WebProfiler
+    def self.initialize!(app)
+      raise "Rails::WebProfiler initialized twice. Set `require: false' for rails-webprofiler in your Gemfile" if @already_initialized
 
-      ::Rack::WebProfiler.unregister_collector [
-        # ::Rack::WebProfiler::Collectors::ExceptionCollector,
-        ::Rack::WebProfiler::Collectors::RackCollector,
-        ::Rack::WebProfiler::Collectors::RequestCollector,
-      ]
+      app.middleware.insert(0, ::Rack::WebProfiler)
 
-      ::Rack::WebProfiler.register_collector [
+      ::Rack::WebProfiler.reset_collectors!
+
+      ::Rack::WebProfiler.register_collectors [
+        ::Rack::WebProfiler::Collectors::RubyCollector,
+        ::Rack::WebProfiler::Collectors::TimeCollector,
         Rails::WebProfiler::Collectors::ActionViewCollector,
         Rails::WebProfiler::Collectors::ActiveRecordCollector,
         Rails::WebProfiler::Collectors::RailsCollector,
@@ -22,6 +19,18 @@ module Rails
       # Subscrine all Rails notifications.
       handler = Rails::WebProfiler::NotificationHandler.new
       ActiveSupport::Notifications.subscribe(/.+/, handler)
+
+      c = ::Rack::WebProfiler.config
+
+      c.tmp_dir = ::File.expand_path(::File.join(Rails.root, "tmp"), __FILE__)
+
+      @already_initialized = true
+    end
+
+    class Railtie < ::Rails::Railtie # :nodoc:
+      initializer "rails-webprofiler.configure_rails_initialization" do |app|
+        Rails::WebProfiler.initialize!(app)
+      end
     end
   end
 end
