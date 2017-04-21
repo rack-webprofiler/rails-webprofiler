@@ -16,6 +16,12 @@ ICON
       events = []
       events = data.by_event_name("sql.active_record") unless data.nil?
 
+      ar_conn = ActiveRecord::Base.connection
+      store :connection, {
+        adapter_class: ar_conn.class.name,
+        adapter_name:  ar_conn.adapter_name,
+      }
+
       total_duration = events.inject(0) { |sum, e| sum + e.duration }
 
       store :events,         events
@@ -84,5 +90,23 @@ __END__
     <% else %>
     <p><span class="text__no-value">No queries executed.</span></p>
     <% end %>
+  </div>
+
+  <div class="block">
+    <h3>Connection</h3>
+
+    <% conn = data(:connection) %>
+    <table>
+      <tbody>
+        <tr>
+          <th>Adapter class</th>
+          <td><code><%=h conn[:adapter_class] %></code></td>
+        </tr>
+        <tr>
+          <th>Adapter name</th>
+          <td><%=h conn[:adapter_name] %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 <% end %>
