@@ -25,7 +25,7 @@ ICON
 
     template __FILE__, type: :DATA
 
-    is_enabled? -> { defined? ::ActiveRecord }
+    is_enabled? -> { defined? ::ActionView }
   end
 end
 
