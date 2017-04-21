@@ -10,7 +10,7 @@ ICON
     label      "ActiveRecord"
     position   10
 
-    collect do |_request, _response|
+    collect do
       data = ::Rack::WebProfiler.data("rails.events")
 
       events = []

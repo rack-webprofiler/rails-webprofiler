@@ -11,7 +11,7 @@ ICON
     label      "Rails"
     position   1
 
-    collect do |request, _response|
+    collect do |request|
       store :rack_version, ::Rack.release
 
       store :rails_version, Rails.version

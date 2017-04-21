@@ -10,7 +10,7 @@ ICON
     label      "ActionView"
     position   9
 
-    collect do |_request, _response|
+    collect do
       data = ::Rack::WebProfiler.data("rails.events")
 
       events = []
