@@ -14,7 +14,12 @@ ICON
       data = ::Rack::WebProfiler.data("rails.events")
 
       events = []
-      events = data.by_event_names(%w(render_template.action_view render_partial.action_view)) unless data.nil?
+      if !data.nil?
+        events = data.by_event_names(%w(render_template.action_view render_partial.action_view))
+        events.each do |e|
+          e.payload.delete_if { |k, _v| !%w( identifier layout ).include?(k.to_s) }
+        end
+      end
 
       total_duration = events.inject(0) { |sum, e| sum + e.duration }
 
