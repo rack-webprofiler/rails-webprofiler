@@ -9,6 +9,13 @@
   * Create a collector to show the Rails logger informations.
 
 
+## v0.1.2
+
+### Fixes
+
+  * Avoid exception with NotificationHandler.
+
+
 ## v0.1.1
 
 Use `rack-webprofiler` >= `0.1.3`.
